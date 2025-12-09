@@ -15,6 +15,10 @@ const urlSchema = new Schema({
     timestamps: true 
 });
 
+urlSchema.virtual("shortUrl").get(function(){
+    return (process.env.API_URL+ "/" + this.key);
+});
+
 const Url = mongoose.model('Url', urlSchema);
 
 module.exports = Url;
