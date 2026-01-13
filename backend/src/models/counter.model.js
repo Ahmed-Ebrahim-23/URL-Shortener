@@ -8,7 +8,7 @@ const counterSchema = new Schema({
     },
     seq: { 
         type: Number, 
-        default: 200 
+        default: 100000000 
     },
 });
 
