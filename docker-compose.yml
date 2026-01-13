@@ -1,0 +1,28 @@
+services:
+  backend:
+    build:
+      context: backend
+      dockerfile: dockerfile
+    ports:
+      - "3000:3000"
+    depends_on:
+      - redis
+    environment:
+      - NODE_ENV=development
+
+  redis:
+    image: "redis:alpine"
+    ports:
+      - "6379:6379"
+
+  frontend:
+    build:
+      context: frontend
+      dockerfile: dockerfile
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    depends_on:
+      - backend
